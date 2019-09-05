@@ -9,6 +9,9 @@
         <e p="scripts" t="Include">
           <e p="Asteroidmove.cs" t="Include" />
           <e p="rockMove.cs" t="Include" />
+          <e p="ShipMove.cs" t="Include" />
+          <e p="ShipRaycast.cs" t="Include" />
+          <e p="timer.cs" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
