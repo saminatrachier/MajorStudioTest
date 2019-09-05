@@ -10,6 +10,7 @@
           <e p="Asteroidmove.cs" t="Include" />
           <e p="rockMove.cs" t="Include" />
           <e p="ShipMove.cs" t="Include" />
+          <e p="shipmoveTWO.cs" t="Include" />
           <e p="ShipRaycast.cs" t="Include" />
           <e p="timer.cs" t="Include" />
         </e>

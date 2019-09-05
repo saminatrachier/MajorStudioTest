@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipMove : MonoBehaviour
+public class shipmoveTWO : MonoBehaviour
 {
-    //put this script on the players character
-
-    public float moveSpeed = 5f;
+     public float moveSpeed = 5f;
     private Rigidbody myRigidbody;
     private Vector3 inputVector; //gets input from update and sends it to physics
     
@@ -27,19 +25,19 @@ public class ShipMove : MonoBehaviour
       // inputVector += transform.right * horizontal * moveSpeed; //left/right direction
         //Debug.Log("vertical" + vertical);
         
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             myRigidbody.velocity = new Vector3(0, 5, 0);
         }
-        if (Input.GetKey(KeyCode.S))
+       if (Input.GetKey(KeyCode.DownArrow))
         {
             myRigidbody.velocity = new Vector3(0, -5, 0);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             myRigidbody.velocity = new Vector3(5, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.A))
+       }
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             myRigidbody.velocity = new Vector3(-5, 0, 0);
         }
