@@ -1,2 +1,1 @@
-# MajorStudioTest
-Test for major studio/github
+# NoPictures
