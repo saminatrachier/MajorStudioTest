@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class shipmoveTWO : MonoBehaviour
 {
@@ -27,20 +28,22 @@ public class shipmoveTWO : MonoBehaviour
         
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            myRigidbody.velocity = new Vector3(0, 5, 0);
+            myRigidbody.velocity = new Vector3(0, moveSpeed, 0);
         }
        if (Input.GetKey(KeyCode.DownArrow))
         {
-            myRigidbody.velocity = new Vector3(0, -5, 0);
+            myRigidbody.velocity = new Vector3(0, -moveSpeed, 0);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            myRigidbody.velocity = new Vector3(5, 0, 0);
+            myRigidbody.velocity = new Vector3(moveSpeed, 0, 0);
        }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            myRigidbody.velocity = new Vector3(-5, 0, 0);
+            myRigidbody.velocity = new Vector3(-moveSpeed, 0, 0);
         }
+        
+        
         //horizontal input (A/D, Left/Right)
        // float horizontalInput = Input.GetAxis("Horizontal");
         //vertical input (W/S, Up/Down)
@@ -68,5 +71,29 @@ public class shipmoveTWO : MonoBehaviour
         Debug.Log("input vector" + inputVector);
     }
 
+    //score if it hits the score bar above the play scene
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Goal")
+        {
+            transform.position = new Vector3(15, -8, 1);
+            score.Score++;
+        }
+        //respawns ship at beginning
+        if (other.gameObject.tag == "barrier")
+        {
+            transform.position = new Vector3(15,-8,1);
+        }
+        //knocks the spaceship to the right upon impact
+        if (other.gameObject.tag == "rightRock")
+        {
+            myRigidbody.AddForce(Vector3.right * 10, ForceMode.Impulse);
+        }
+ 
+        if (other.gameObject.tag == "leftRock")
+        {
+            myRigidbody.AddForce(Vector3.left * 10, ForceMode.Impulse);       
+        }
+    }
 
 }

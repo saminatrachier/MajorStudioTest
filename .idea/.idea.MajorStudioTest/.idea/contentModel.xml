@@ -9,6 +9,8 @@
         <e p="scripts" t="Include">
           <e p="Asteroidmove.cs" t="Include" />
           <e p="rockMove.cs" t="Include" />
+          <e p="score.cs" t="Include" />
+          <e p="scoreplayer1.cs" t="Include" />
           <e p="ShipMove.cs" t="Include" />
           <e p="shipmoveTWO.cs" t="Include" />
           <e p="ShipRaycast.cs" t="Include" />

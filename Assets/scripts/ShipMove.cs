@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShipMove : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class ShipMove : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody myRigidbody;
     private Vector3 inputVector; //gets input from update and sends it to physics
+    public float rockspeed = 100f;
+    public Vector3 destination; //rock will always move towards destination
+
     
     // Start is called before the first frame update
     void Start()
@@ -29,19 +33,25 @@ public class ShipMove : MonoBehaviour
         
         if (Input.GetKey(KeyCode.W))
         {
-            myRigidbody.velocity = new Vector3(0, 5, 0);
+            myRigidbody.velocity = new Vector3(0, moveSpeed, 0);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            myRigidbody.velocity = new Vector3(0, -5, 0);
+            myRigidbody.velocity = new Vector3(0, -moveSpeed, 0);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            myRigidbody.velocity = new Vector3(5, 0, 0);
+            myRigidbody.velocity = new Vector3(moveSpeed, 0, 0);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            myRigidbody.velocity = new Vector3(-5, 0, 0);
+            myRigidbody.velocity = new Vector3(-moveSpeed, 0, 0);
+        }
+
+        //restart the scene
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
         }
         //horizontal input (A/D, Left/Right)
        // float horizontalInput = Input.GetAxis("Horizontal");
@@ -69,6 +79,32 @@ public class ShipMove : MonoBehaviour
         myRigidbody.AddForce(inputVector * 10f);
         Debug.Log("input vector" + inputVector);
     }
+    
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Goal")
+        {
+            transform.position = new Vector3(-15, -8, 1);
+            scoreplayer1.Scorep1++;
+        }
+        //respawns ship at beginning
+        if (other.gameObject.tag == "barrier")
+        {
+            transform.position = new Vector3(-15,-8,1);
+        }
+
+        //knocks the spaceship to the right upon impact
+       if (other.gameObject.tag == "rightRock")
+      {
+          myRigidbody.AddForce(Vector3.right * 10, ForceMode.Impulse);
+      }
+ 
+       if (other.gameObject.tag == "leftRock")
+        {
+           myRigidbody.AddForce(Vector3.left * 10, ForceMode.Impulse);       
+    }
+    }
+
 
 
 }
